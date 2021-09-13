@@ -1,0 +1,453 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+  <meta name="author" content="Creative Tim">
+  <title>Income Statement</title>
+  <!-- Favicon -->
+  <link rel="icon" href="./static/logo.png" type="image/png">
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
+  <link rel="stylesheet" href="../static/vendor/nucleo/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="../static/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <!-- Argon CSS -->
+  <link rel="stylesheet" href="../static/css/argon.css?v=1.2.0" type="text/css">
+</head>
+
+<body style="    background: linear-gradient( 
+    45deg
+     , #f5f7fa 0,#c3cfe2 100%);">
+  <!-- Sidenav -->
+ 
+  <!-- Main content -->
+  <div class="main-content" id="panel">
+    <!-- Topnav -->
+    <nav class="navbar navbar-top navbar-expand navbar-dark  border-bottom">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Search form -->
+          <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
+            <div class="form-group mb-0">
+              <div class="input-group input-group-alternative input-group-merge">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-search"></i></span>
+                </div>
+                <input class="form-control" placeholder="Search" type="text">
+              </div>
+            </div>
+            <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </form>
+          <!-- Navbar links -->
+          <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="https://www.linkedin.com/in/deep3110/" target="_blank" data-toggle="tooltip" data-original-title="Add us on Linkedin">
+                <i class="fab fa-linkedin" style="color:#5e72e4;"></i>
+                <span class="nav-link-inner--text d-lg-none">Linkedin</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="https://www.instagram.com/deep.shah31/" target="_blank" data-toggle="tooltip" data-original-title="Follow us on Instagram">
+                <i class="fab fa-instagram" style="color:#5e72e4;"></i>
+                <span class="nav-link-inner--text d-lg-none">Instagram</span>
+              </a>
+            </li>
+            <li class="nav-item"style="color:#5e72e4;">
+              <a class="nav-link nav-link-icon" href="mailto: deepshah3110@gmail.com,samit2001.shah@gmail.com" target="_blank" data-toggle="tooltip" data-original-title="Send us a Mail">
+                
+                <i class="far fa-envelope"  style="color:#5e72e4;"></i>
+                <span class="nav-link-inner--text d-lg-none">Mail</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="https://github.com/deep-3110" target="_blank" data-toggle="tooltip" data-original-title="Star us on Github">
+                <i class="fab fa-github" style="color:#5e72e4;"></i>
+                <span class="nav-link-inner--text d-lg-none">Github</span>
+              </a>
+            </li>
+            <li class="nav-item d-none d-lg-block ml-lg-4">
+              <a href="mailto: deepshah3110@gmail.com,samit2001.shah@gmail.com" target="_blank" class="btn btn-neutral btn-icon">
+                <span class="btn-inner--icon">
+                </span>
+                <span class="nav-link-inner--text">Contact Us</span>
+                
+              </a>
+              
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Header -->
+    <!-- Header -->
+    <div class="header  pb-6">
+      <script>  
+        //user-defined function to download CSV file  
+        function downloadCSV(csv, filename) {  
+            var csvFile;  
+            var downloadLink;  
+             
+            //define the file type to text/csv  
+            csvFile = new Blob([csv], {type: 'text/csv'});  
+            downloadLink = document.createElement("a");  
+            downloadLink.download = filename;  
+            downloadLink.href = window.URL.createObjectURL(csvFile);  
+            downloadLink.style.display = "none";  
+          
+            document.body.appendChild(downloadLink);  
+            downloadLink.click();  
+        }  
+          
+        //user-defined function to export the data to CSV file format  
+        function exportTableToCSV(filename) {  
+           //declare a JavaScript variable of array type  
+           var csv = [];  
+           var rows = document.querySelectorAll("table tr");  
+           
+           //merge the whole data in tabular form   
+           for(var i=0; i<rows.length; i++) {  
+            var row = [], cols = rows[i].querySelectorAll("td, th");  
+            for( var j=0; j<cols.length; j++)  
+               row.push(cols[j].innerText);  
+            csv.push(row.join(","));  
+           }   
+           //call the function to download the CSV file  
+           downloadCSV(csv.join("\n"), filename);  
+        }  
+        </script>  
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              
+              <h6 class="h2 d-inline-block mb-0">Income Statement</h6>
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="{{ url_for('homepage') }}"><i class="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item"><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Income Statement</li>
+                </ol>
+              </nav>
+            </div>
+            <div class="col-lg-6 col-5 text-right">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--6">
+      <div class="row">
+        <div class="col">
+          <div class="card" style="padding-right: 100px;padding-left:100px;">
+            <!-- Card header -->
+            <div class="card-header border-0">
+              <h3 class="mb-0">Income Statement</h3>
+            </div>
+            <!-- Light table -->
+            <div class="table-responsive" >
+              <table class="table align-items-center table-flush" >
+               &nbsp;
+                <tbody class="list" style="padding-right: 3px;">
+                
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                      
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">Reported Currency</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      {{reportedCurrency[0]}}
+                    </td>
+        
+                     
+                    </td>
+                  </tr>   <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                      
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">Filling Date</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      {{fillingDate[0]}}
+                    </td>
+        
+                     
+                    </td>
+                  </tr>   
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                      
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">Accepted Date</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      {{acceptedDate[0]}}
+                    </td>
+        
+                     
+                    </td>
+                  </tr>   <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                      
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">Revenue</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      {{revenue[0]}}
+                    </td>
+        
+                     
+                    </td>
+                  </tr>   <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                      
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">Cost of Revenue</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      {{costofRevenue[0]}}
+                    </td>
+        
+                     
+                    </td>
+                  </tr>   
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                      
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">Gross Profit</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      {{grossProfit[0]}}
+                    </td>
+        
+                     
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                      
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">Gross Profit Ratio</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      {{grossProfitRatio[0]}}
+                    </td>
+        
+                     
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                      
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">Research and Development Expense</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      {{researchAndDevelopmentExpenses[0]}}
+                    </td>
+        
+                     
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                      
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">General and Administrative Expenses</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      {{generalAndAdministrativeExpenses[0]}}
+                    </td>
+        
+                     
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                      
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">Selling and Marketing Expenses</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      {{sellingAndMarketingExpenses[0]}}
+                    </td>
+        
+                     
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                      
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">Selling General and Administrative Expenses</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      {{sellingGeneralAndAdministrativeExpenses[0]}}
+                    </td>
+        
+                     
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                      
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">Other Expenses</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      {{otherExpenses[0]}}
+                    </td>
+        
+                     
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                      
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">Operating Expenses</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      {{operatingExpenses[0]}}
+                    </td>
+        
+                     
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                      
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">Cost and Expenses</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      {{costAndExpenses[0]}}
+                    </td>
+        
+                     
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                      
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">Interest Expense</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      {{interestExpense[0]}}
+                    </td>
+        
+                     
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              
+            </div>
+            <!-- Card footer -->
+            <div class="card-footer py-4">
+              <nav aria-label="...">
+                  <a href="{{link[0]}}">Detailed Income Statement</a>
+                  <a style="color: #5e72e4;
+                  padding-left: 50px;"onclick="exportTableToCSV('IncomeStament.csv')">Export as CSV</a>
+                
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer pt-0">
+        <div class="row align-items-center justify-content-xl-between">
+          <div class="col-xl-6">
+            <div class="copyright text-center text-xl-left text-muted">
+              © 2021 <a href="https://www.deepshah.in" class="font-weight-bold ml-1" target="_blank">EquiStatistics</a>
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+              <li class="nav-item">
+                <a href="mailto: deepshah3110@gmail.com" class="nav-link" target="_blank">Deep Shah</a>
+              </li>
+              <li class="nav-item">
+                <a href="mailto: samit2001shah@gmail.com" class="nav-link" target="_blank">Samit Shah</a>
+              </li>
+              <li class="nav-item">
+                <a href="https://github.com/deep-3110Github" class="nav-link" target="_blank">Github</a>
+              </li>
+            
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <!-- Argon Scripts -->
+  <!-- Core -->
+  <script src="../static/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="../static/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/vendor/js-cookie/js.cookie.js"></script>
+  <script src="../static/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+  <script src="../static/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+  <!-- Argon JS -->
+  <script src="../static/js/argon.js?v=1.2.0"></script>
+</body>
+
+</html>

@@ -1,0 +1,874 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+  <meta name="author" content="Creative Tim">
+  <title>Dashboard</title>
+  <!-- Favicon -->
+  <link rel="icon" href="./static/logo.png" type="image/png">
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
+  <link rel="stylesheet" href="static/vendor/nucleo/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="static/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <!-- Page plugins -->
+  <!-- Argon CSS -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="static/css/argon.css?v=1.2.0" type="text/css">
+</head>
+
+<body style="background: linear-gradient(
+  45deg
+  , #f5f7fa 0,#c3cfe2 100%);">
+
+  <!-- Main content -->
+  <div class="main-content" id="panel" style="background: linear-gradient(
+    45deg
+    , #f5f7fa 0,#c3cfe2 100%);">
+    <!-- Topnav -->
+    <nav class="navbar navbar-top navbar-expand navbar-dark  border-bottom">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Search form -->
+          <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
+            <div class="form-group mb-0">
+              <div class="input-group input-group-alternative input-group-merge">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-search"></i></span>
+                </div>
+                <input class="form-control" placeholder="Search" type="text">
+              </div>
+            </div>
+            <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </form>
+          <!-- Navbar links -->
+          <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="https://www.linkedin.com/in/deep3110/" target="_blank" data-toggle="tooltip" data-original-title="Add us on Linkedin">
+                <i class="fab fa-linkedin" style="color:#5e72e4;"></i>
+        
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="https://www.instagram.com/deep.shah31/" target="_blank" data-toggle="tooltip" data-original-title="Follow us on Instagram">
+                <i class="fab fa-instagram" style="color:#5e72e4;"></i>
+           
+              </a>
+            </li>
+            <li class="nav-item"style="color:#5e72e4;">
+              <a class="nav-link nav-link-icon" href="mailto: deepshah3110@gmail.com,samit2001.shah@gmail.com" target="_blank" data-toggle="tooltip" data-original-title="Send us a Mail">
+                
+                <i class="far fa-envelope"  style="color:#5e72e4;"></i>
+     
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="https://github.com/deep-3110" target="_blank" data-toggle="tooltip" data-original-title="Star us on Github">
+                <i class="fab fa-github" style="color:#5e72e4;"></i>
+              </a>
+            </li>
+            <li class="nav-item d-none d-lg-block ml-lg-4">
+              <a href="mailto: deepshah3110@gmail.com,samit2001.shah@gmail.com" target="_blank" class="btn btn-neutral btn-icon">
+                <span class="btn-inner--icon">
+                </span>
+                <span class="nav-link-inner--text">Contact Us</span>
+                
+              </a>
+              
+            </li>
+          </ul>
+         
+        </div>
+      </div>
+    </nav>
+    <!-- Header -->
+    <!-- Header -->
+    <div class="header   pb-6">
+      
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <h6 class="h2 text-primary d-inline-block mb-0">{{symbol}}</h6>
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="{{ url_for('homepage') }}"><i class="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                </ol>
+              </nav>
+              
+              
+            </div>
+            <div class="col-lg-6 col-5 text-right">
+              <a href="{{ url_for('incomestatement') }}" class="btn btn-sm btn-neutral">Income Statement</a>
+              
+            </div>
+          </div>
+          <!-- Card stats -->
+          <div class="row">
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Stock Price</h5>
+                      <span class="h2 font-weight-bold mb-0">${{price[0]}}</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                        <i class="ni ni-chart-bar-32"></i>
+                      </div>
+                    </div>
+                  </div>
+               
+
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Day High</h5>
+                      <span class="h2 font-weight-bold mb-0">${{dayHigh[0]}}</span>
+               
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                        <i class="fas fa-arrow-circle-up"></i>
+                      </div>
+                    </div>
+                  </div>
+               
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Day Low</h5>
+                      <span class="h2 font-weight-bold mb-0">${{dayLow[0]}}</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape  bg-gradient-orange text-white rounded-circle shadow">
+                        <i class="fas fa-arrow-circle-down"></i>
+                      </div>
+                    </div>
+                  </div>
+               
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Predicted Close Price</h5>
+                      <span class="h2 font-weight-bold mb-0">${{predicted_stock_price}}</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                        <i class="fas fa-search-dollar"></i>
+                      </div>
+                    </div>
+                  </div>
+               
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--6">
+      <div class="row">
+        <div class="col-xl-8">
+          <div class="card bg-default" style=" background-color: #FFFFFF !important;">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h5 class="h3 " style="    color: #32325d;" >{{companyname}} Chart</h5>
+               
+                </div>
+                
+              </div>
+            </div>
+            <div class="card-body" style=" height:455px">
+              
+             <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div id="tradingview_bd18c"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+  <script type="text/javascript">
+  new TradingView.widget(
+  {
+    "width": "100%",
+  "height": "430",
+  "symbol": "NASDAQ:{{companyname}}",
+  "timezone": "Etc/UTC",
+  "interval": "D",
+  "timezone": "Etc/UTC",
+  "theme": "light",
+  "style": "2",
+  "locale": "in",
+  "toolbar_bg": "#f1f3f6",
+  "enable_publishing": false,
+  "withdateranges": true,
+  "allow_symbol_change": true,
+  "container_id": "tradingview_907fa"
+}
+  );
+  </script>
+</div>
+<!-- TradingView Widget END -->
+            </div>
+            <br>
+          </div>
+        </div>
+        <div class="col-xl-4">
+          <div class="card">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                <div class="col" style="
+                height: 510px;">
+                  <h5 class="h3 mb-0">Technical Analysis</h5>
+                  <br>
+                  <div class="card" style="box-shadow: 0 0 0 0 rgb(136 152 170 / 15%);">
+                    <div class="table-responsive" >
+                      <!-- Projects table -->
+               
+                      <!-- TradingView Widget BEGIN -->
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+   <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
+  {
+  "interval": "1m",
+  "width": "100%",
+  "isTransparent": false,
+  "height": 425,
+  "symbol": "NASDAQ:{{companyname}}",
+  "showIntervalTabs": true,
+  "locale": "in",
+  "colorTheme": "light"
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+<!-- TradingView Widget END -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-8">
+          <div class="card bg-default" style=" background-color: #FFFFFF !important;">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h5 class="h3 " style="    color: #32325d;" >Annual Revenue Growth</h5>
+               
+                </div>
+                
+              </div>
+            </div>
+            <div class="card-body">
+              
+             
+              <canvas id="myChart"></canvas>
+            </div>
+            <br>
+          </div>
+        </div>
+        <div class="col-xl-4">
+          <div class="card">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h5 class="h3 mb-0">Company Details</h5>
+                  <br>
+                  <div class="card" style="box-shadow: 0 0 0 0 rgb(136 152 170 / 15%);">
+                    <div class="table-responsive" >
+                      <!-- Projects table -->
+                      <table class="table align-items-center table-flush">
+                       
+                        <tbody>
+                          <tr>
+                            <th scope="row">
+                              Name
+                            </th>
+                            <td>
+                              <a href="{{website[0]}}"> {{name[0]}}</a>
+                            </td>
+                           
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                              CEO
+                            </th>
+                            <td>
+                              {{ceo[0]}}
+                            </td>
+                           
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                              Volume
+                            </th>
+                            <td>
+                              {{volume[0]}}
+                            </td>
+                           
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                              Exchange
+                            </th>
+                            <td>
+                              {{exchange[0]}}
+                            </td>
+                           
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                              Range
+                            </th>
+                            <td>
+                              {{rangeprice[0]}}
+                            </td>
+                            
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                              Market Cap
+                            </th>
+                            <td>
+                              {{marketCap[0]}}
+                            </td>
+                          
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                              Sector
+                            </th>
+                            <td>
+                              {{sector[0]}}
+                            </td>
+                           
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                              Industry
+                            </th>
+                            <td>
+                              {{industry[0]}}
+                            </td>
+                            
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                             State
+                            </th>
+                            <td>
+                              {{state[0]}}
+                            </td>
+                           
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                             Country
+                            </th>
+                            <td>
+                              {{country[0]}}
+                            </td>
+                           
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-8">
+          <div class="card">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h3 class="mb-0">News Headlines</h3>
+                </div>
+                <div class="col text-right">
+                </div>
+              </div>
+            </div>
+            <div class="table-responsive" style="overflow:scroll;
+            height:330px;">
+              <!-- Projects table -->
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Headlines</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">
+                      <a href="{{news_urls[0]}}">{{news_titles_lists[0]}}</a>
+                    </th>
+                    <td>
+                     {{news_authors[0]}}
+                    </td>
+                    <td>
+                      {{news_publishedat[0]}}
+                    </td>
+                   
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <a href="{{news_urls[1]}}">{{news_titles_lists[1]}}</a>
+                    </th>
+                    <td>
+                     {{news_authors[1]}}
+                    </td>
+                    <td>
+                      {{news_publishedat[1]}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <a href="{{news_urls[2]}}">{{news_titles_lists[2]}}</a>
+                    </th>
+                    <td>
+                     {{news_authors[2]}}
+                    </td>
+                    <td>
+                      {{news_publishedat[2]}}
+                    </td>
+                  </tr>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <a href="{{news_urls[3]}}">{{news_titles_lists[3]}}</a>
+                    </th>
+                    <td>
+                     {{news_authors[3]}}
+                    </td>
+                    <td>
+                      {{news_publishedat[3]}}
+                    </td>
+                  </tr>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <a href="{{news_urls[4]}}">{{news_titles_lists[4]}}</a>
+                    </th>
+                    <td>
+                     {{news_authors[4]}}
+                    </td>
+                    <td>
+                      {{news_publishedat[4]}}
+                    </td>
+                  </tr>
+                
+                  <tr>
+                    <th scope="row">
+                      <a href="{{news_urls[5]}}">{{news_titles_lists[5]}}</a>
+                    </th>
+                    <td>
+                     {{news_authors[5]}}
+                    </td>
+                    <td>
+                      {{news_publishedat[5]}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <a href="{{news_urls[6]}}">{{news_titles_lists[6]}}</a>
+                    </th>
+                    <td>
+                     {{news_authors[6]}}
+                    </td>
+                    <td>
+                      {{news_publishedat[6]}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <a href="{{news_urls[7]}}">{{news_titles_lists[7]}}</a>
+                    </th>
+                    <td>
+                     {{news_authors[7]}}
+                    </td>
+                    <td>
+                      {{news_publishedat[7]}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <a href="{{news_urls[8]}}">{{news_titles_lists[8]}}</a>
+                    </th>
+                    <td>
+                     {{news_authors[8]}}
+                    </td>
+                    <td>
+                      {{news_publishedat[8]}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <a href="{{news_urls[9]}}">{{news_titles_lists[9]}}</a>
+                    </th>
+                    <td>
+                     {{news_authors[9]}}
+                    </td>
+                    <td>
+                      {{news_publishedat[9]}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <a href="{{news_urls[10]}}">{{news_titles_lists[10]}}</a>
+                    </th>
+                    <td>
+                     {{news_authors[10]}}
+                    </td>
+                    <td>
+                      {{news_publishedat[10]}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <a href="{{news_urls[11]}}">{{news_titles_lists[11]}}</a>
+                    </th>
+                    <td>
+                     {{news_authors[11]}}
+                    </td>
+                    <td>
+                      {{news_publishedat[11]}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <a href="{{news_urls[12]}}">{{news_titles_lists[12]}}</a>
+                    </th>
+                    <td>
+                     {{news_authors[12]}}
+                    </td>
+                    <td>
+                      {{news_publishedat[12]}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <a href="{{news_urls[13]}}">{{news_titles_lists[13]}}</a>
+                    </th>
+                    <td>
+                     {{news_authors[13]}}
+                    </td>
+                    <td>
+                      {{news_publishedat[13]}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <a href="{{news_urls[14]}}">{{news_titles_lists[14]}}</a>
+                    </th>
+                    <td>
+                     {{news_authors[14]}}
+                    </td>
+                    <td>
+                      {{news_publishedat[14]}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <a href="{{news_urls[15]}}">{{news_titles_lists[15]}}</a>
+                    </th>
+                    <td>
+                     {{news_authors[15]}}
+                    </td>
+                    <td>
+                      {{news_publishedat[15]}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <a href="{{news_urls[16]}}">{{news_titles_lists[16]}}</a>
+                    </th>
+                    <td>
+                     {{news_authors[16]}}
+                    </td>
+                    <td>
+                      {{news_publishedat[16]}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <a href="{{news_urls[17]}}">{{news_titles_lists[17]}}</a>
+                    </th>
+                    <td>
+                     {{news_authors[17]}}
+                    </td>
+                    <td>
+                      {{news_publishedat[17]}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <a href="{{news_urls[18]}}">{{news_titles_lists[18]}}</a>
+                    </th>
+                    <td>
+                     {{news_authors[18]}}
+                    </td>
+                    <td>
+                      {{news_publishedat[18]}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <a href="{{news_urls[19]}}">{{news_titles_lists[19]}}</a>
+                    </th>
+                    <td>
+                     {{news_authors[19]}}
+                    </td>
+                    <td>
+                      {{news_publishedat[19]}}
+                    </td>
+                  </tr>
+                  
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4">
+          <div class="card"style="height: 400px;">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h3 class="mb-0">News Sentiments</h3>
+                </div>
+              </div>
+            </div>
+            <div class="table-responsive" style="height: 500px;width:300px;
+            margin: auto;
+            display: block;">
+<canvas id="piechart" width="" height="300"></canvas>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Part 2-->
+     
+      <!-- Footer -->
+      <footer class="footer pt-0">
+        <div class="row align-items-center justify-content-xl-between">
+          <div class="col-xl-6">
+            <div class="copyright text-center text-xl-left text-muted">
+              © 2021 <a href="https://www.deepshah.in" class="font-weight-bold ml-1" target="_blank">EquiStatistics</a>
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+              <li class="nav-item">
+                <a href="mailto: deepshah3110@gmail.com" class="nav-link" target="_blank">Deep Shah</a>
+              </li>
+              <li class="nav-item">
+                <a href="mailto: samit2001shah@gmail.com" class="nav-link" target="_blank">Samit Shah</a>
+              </li>
+              <li class="nav-item">
+                <a href="https://github.com/deep-3110Github" class="nav-link" target="_blank">Github</a>
+              </li>
+            
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <!-- Argon Scripts -->
+  <!-- Core -->
+  <script>
+    var ctx = document.getElementById('myChart').getContext("2d");
+
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ["","2018", "2019", "2020"],
+        datasets: [{
+            label: "Revenue Growth %",
+            borderColor: " #5e72e4",
+            pointBorderColor: "#5e72e4",
+            pointBackgroundColor: "#5e72e4",
+            pointHoverBackgroundColor: "#5e72e4",
+            pointHoverBorderColor: "#5e72e4",
+            pointBorderWidth: 10,
+            pointHoverRadius: 10,
+            pointHoverBorderWidth: 1,
+            pointRadius: 3,
+            fill: false,
+            borderWidth: 4,
+            data: [0,{{revenuegrowthyearly[0]}},{{revenuegrowthyearly[1]}},{{revenuegrowthyearly[2]}}]
+        }]
+    },
+    options: {
+        legend: {
+          display: false
+            
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    fontColor: "rgba(0,0,0,0.5)",
+                    fontStyle: "bold",
+                    beginAtZero: true,
+                    maxTicksLimit: 5,
+                    padding: 20
+                },
+                gridLines: {
+                    drawTicks: false,
+                    display: false
+                }
+
+            }],
+            xAxes: [{
+                gridLines: {
+                    zeroLineColor: "transparent"
+                },
+                ticks: {
+                    padding: 20,
+                    fontColor: "rgba(0,0,0,0.5)",
+                    fontStyle: "bold"
+                }
+            }]
+        }
+    }
+});
+
+
+  </script>
+
+  <script>
+    var chartData = {
+    labels: ["January", "February", "March", "April", "May", "June"],
+    datasets: [
+        {
+            fillColor: "#79D1CF",
+            strokeColor: "#79D1CF",
+            data: [60, 80, 81, 56, 55, 40]
+        }
+    ]
+};
+
+var data = {
+    labels: [
+        "Positive",
+        "Neutral",
+        "Negative"
+    ],
+    datasets: [
+        {
+            data: [{{positive_news_sentiment}},{{neutral_news_sentiment}},{{negative_news_sentiment}}],
+            backgroundColor: [
+                "#00f2c3",
+                "#1d8cf8",
+                "#f5365c"
+            ],
+												hoverBorderColor: [
+																	"#eee","#eee"														
+												]
+        }]
+};
+
+var piectx = document.getElementById("piechart").getContext("2d");
+var pieChart = new Chart(piectx,{
+    type: 'pie',
+    data: data,
+				options: { 
+					showAllTooltips: true,
+								animation: {
+        		animateRotate: true,
+										animateScale: true
+								}, 
+					   elements: {
+									arc: {
+										borderColor: "#fff"
+									}
+								},
+								title: {
+            display: true,
+            text: 'Custom Chart Title',
+												fontSize: 18,
+												padding: 20,
+									   fontColor: "#999",
+									   fontStyle: 'Normal',
+											 fontFamily: "Montserrat",
+									   fullWidth: true
+        },
+					   tooltips: {
+								enabled: false,
+					   bodyFontColor: "#efefef",
+					   fontStyle: 'Normal',
+					   bodyFontFamily: "Montserrat",
+					   cornerRadius: 2,
+					   backgroundColor: "#333",
+					   xPadding: 7,
+					   yPadding: 7,
+					   caretSize: 5,
+					   bodySpacing: 10
+					   },
+             legend: { display: false }
+					
+    }
+});
+
+
+</script>
+<script>
+  
+  
+  
+  </script>
+  <script src="static/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="static/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="static/vendor/js-cookie/js.cookie.js"></script>
+  <script src="static/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+  <script src="static/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+  <!-- Optional JS -->
+  <script src="static/vendor/chart.js/dist/Chart.min.js"></script>
+  <script src="static/vendor/chart.js/dist/Chart.extension.js"></script>
+  <!-- Argon JS -->
+  <script src="static/js/argon.js?v=1.2.0"></script>
+</body>
+
+</html>
