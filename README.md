@@ -26,7 +26,7 @@ Equistatistics
 [Demo](https://youtu.be/hEB0Y_G1KCM)
 
 ## Features
-**Stock Price Prediction Model**
+**Stock Price Prediction Model using Linear Regression**
 <ul>
   <li>R-Squared:86.83177254244428%</li>
   <li>Mean squared error: 14.02</li>
