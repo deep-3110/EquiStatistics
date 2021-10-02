@@ -28,7 +28,7 @@ Equistatistics
 ## Features
 **Stock Price Prediction Model using Linear Regression**
 <ul>
-  <li>R-Squared:86.83177254244428%</li>
+  <li>R-Squared:0.8</li>
   <li>Mean squared error: 14.02</li>
   <li>Variance score: 0.87</li>
   <li>Coefficients: [9.39789552]</li>  
