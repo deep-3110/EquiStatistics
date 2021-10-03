@@ -1,5 +1,5 @@
 from FundamentalAnalysis.details import profile
-from flask import Flask, render_template, request,redirect
+from flask import Flask, render_template, request,redirect,url_for
 import pprint
 from flask.helpers import send_from_directory
 import requests 
@@ -13,11 +13,14 @@ from datetime import date
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+import sqlite3
+from flask import jsonify
 
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 companyname=""
 query=""
-api_key_fmp="3fe46ca8b0abe4bb5485939191f796dd"
-
+api_key_fmp="639ad0383d5548a11c1f1864ab499672"
 
 def income_statement():
     ticker = companyname
@@ -64,7 +67,7 @@ def income_statement():
 def finance_profile():
     ticker = companyname
     api_key = api_key_fmp
-    profile = fa.profile(ticker, '3fe46ca8b0abe4bb5485939191f796dd')
+    profile = fa.profile(ticker, '639ad0383d5548a11c1f1864ab499672')
     profile_values=profile.values.tolist()
     range=profile_values[6]
     marketCap=profile_values[4]
@@ -92,7 +95,7 @@ def finance_records():
     ticker = companyname
     api_key = api_key_fmp
     # Quote 
-    quotes = fa.quote(ticker, '3fe46ca8b0abe4bb5485939191f796dd')
+    quotes = fa.quote(ticker, '639ad0383d5548a11c1f1864ab499672')
     quotes_values=quotes.values.tolist()
     symbol=quotes_values[0]
     name=quotes_values[1]
@@ -169,6 +172,7 @@ def news_sentiment_analysis():
     parameters = {
     'q': query, # query phrase
     'pageSize': 30,  # maxiAMZNm is 100
+   'sources':'bloomberg',
     'apiKey': news_api_key,
      'language':'en'
     
@@ -273,9 +277,12 @@ def homepage():
 def dashboard():
     #SENTIMENT SECTION
     global companyname
+   
     if request.method == "POST":
         companyname = request.form.get("companyname")
+        companyname=companyname.upper()
         print("Company Name"+companyname)
+        
     local_sentiment_list=news_sentiment_analysis()
     positive_news_sentiment=local_sentiment_list[0]
     negative_news_sentiment=local_sentiment_list[1]
@@ -323,6 +330,49 @@ def incomestatement():
     grossProfit=income_list[5],grossProfitRatio=income_list[6],researchAndDevelopmentExpenses=income_list[7],generalAndAdministrativeExpenses=income_list[8],
     sellingAndMarketingExpenses=income_list[9],sellingGeneralAndAdministrativeExpenses=income_list[10],otherExpenses=income_list[11],operatingExpenses=income_list[12],
     costAndExpenses=income_list[13],interestExpense=income_list[14],link=income_list[15])
+from datetime import date
+@app.route("/portfoliomanager",methods =["GET", "POST"])
+def portfoliomanager():
+    if request.method == "POST":  
+        try:  
+            symbol = companyname
+            date = "03-10-2021"
+            quotes = fa.quote(symbol, '639ad0383d5548a11c1f1864ab499672')
+            quotes_values=quotes.values.tolist()
+            pricedata=quotes_values[2]
+            price=float(pricedata[0])
+            quantity = request.form["quantity"]  
+            total = round(price*float(quantity) ,2)
+            with sqlite3.connect("portfoliodata.db") as con:  
+                cur = con.cursor()  
+                cur.execute("INSERT INTO PORTFOLIO(SYMBOL, BUY_DATE, QUANTITY, PRICE, TOTAL) VALUES (?,?,?,?,?)",(symbol,date,quantity,price,total))
+                con.commit()  
+        except Exception as e:
+            print(e)
+    con = sqlite3.connect('portfoliodata.db')
+    cursor = con.cursor()  
+    items=[]
+    cursor.execute('SELECT SYMBOL, BUY_DATE, QUANTITY, PRICE, TOTAL FROM PORTFOLIO')
+    items = cursor.fetchall()
+
+    
+    return render_template('portfoliomanager.html',item=items)
+
+@app.route('/delete', methods = ['POST'])
+def delete():
+     if request.method == 'POST':
+         my_data =request.form['symbol1']
+         con = sqlite3.connect('portfoliodata.db')
+         cursor = con.cursor()  
+         items=[]
+         cursor.execute("DELETE FROM PORTFOLIO WHERE SYMBOL = ?",(my_data,))
+         #rcursor.execute("DELETE FROM PORTFOLIO")
+         cursor.execute('SELECT SYMBOL, BUY_DATE, QUANTITY, PRICE, TOTAL FROM PORTFOLIO')
+         con.commit()
+         items = cursor.fetchall()
+     return render_template('portfoliomanager.html',item=items)
+
+
 
 @app.errorhandler(404)
   
@@ -331,6 +381,9 @@ def not_found(e):
   
 # defining function
   return render_template("404.html")
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
   

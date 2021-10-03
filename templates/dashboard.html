@@ -19,6 +19,9 @@
   <!-- Argon CSS -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="static/css/argon.css?v=1.2.0" type="text/css">
+  <style>
+    
+  </style>
 </head>
 
 <body style="background: linear-gradient(
@@ -83,7 +86,6 @@
               
             </li>
           </ul>
-         
         </div>
       </div>
     </nav>
@@ -106,8 +108,39 @@
               
             </div>
             <div class="col-lg-6 col-5 text-right">
-              <a href="{{ url_for('incomestatement') }}" class="btn btn-sm btn-neutral">Income Statement</a>
               
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="far fa-plus-square"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-xl  dropdown-menu-right  py-0 overflow-hidden">
+                  <!-- Dropdown header -->
+                  
+                  <!-- List group -->
+                  <div class="list-group list-group-flush">
+                    
+                    <a href="#!" class="list-group-item list-group-item-action">
+                      <div class="row align-items-center">
+                        
+                        <div class="col ml--2">
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                              <form role="form" action="{{ url_for("portfoliomanager")}}" method="post" style="    padding-left: 100px;">
+                              <input type="text" class="form-control"name="quantity" placeholder="Enter Quantity" style=""><input class="btn btn-primary my-4"type="submit" value="      Add to Portfolio     " style="    text-align: center; width: 200px;">
+                              </form>
+                            </div>
+                           
+                          </div>
+                          </div>
+                      </div>
+                    </a>
+                    
+                  </div>
+                  <!-- View all -->
+                   </div>
+              </li>
+              <a href="{{ url_for('incomestatement') }}" class="btn btn-sm btn-neutral">Income Statement</a>        
+            
             </div>
           </div>
           <!-- Card stats -->
