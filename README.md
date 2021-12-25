@@ -1,10 +1,5 @@
 # EquiStocks
 
-<br />
-<br />
-
-
-
 <!-- DOCUMENTATION -->
 ## Introduction
 EquiStocks
