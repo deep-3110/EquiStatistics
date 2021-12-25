@@ -8,7 +8,6 @@ EquiStocks
 <br/>
 **Subject**: Programming Laboratory BTI CS NMIMS Batch 2023
 <br/>
-<br/>
 [Demo](https://youtu.be/p01KfDET9OE)
 
 ## Features
