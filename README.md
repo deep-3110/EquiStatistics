@@ -33,7 +33,7 @@ EquiStocks
 <ul>  
 <li>Python 3.8</li>  
 <li>SQL</li>  
-<li>Chart.js</li>  
+<li>JavaScript</li>  
 <li>HTML5</li>  
 <li>CSS</li>  
 </ul>
