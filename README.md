@@ -4,14 +4,6 @@
 <br />
 
 
-<p align="center">
-    <img src="https://i.imgur.com/Qu94jxk.jpeg" alt="EquiStocks" height="">
-  </a>
-</p>
-<p align="center">
-    <img src="https://i.imgur.com/F5ON81r.jpeg" alt="EquiStocks Dashboard" height="">
-  </a>
-</p>
 
 <!-- DOCUMENTATION -->
 ## Introduction
@@ -21,12 +13,19 @@ EquiStocks
 <br/>
 **Subject**: Programming Laboratory BTI CS NMIMS Batch 2023
 <br/>
-[Heroku Link](https://EquiStocks.herokuapp.com/)
 <br/>
-[Demo](https://youtu.be/hEB0Y_G1KCM)
+[Demo](https://youtu.be/p01KfDET9OE)
 
 ## Features
-**Stock Price Prediction Model using Linear Regression**
+<ul>
+<li>Company Details Dashboard</li>
+<li>News Sentiment Analysis</li>
+<li>Portfolio Management</li>
+<li>Stock Close Price Prediction</li>
+</ul>
+ 
+
+## Stock Price Prediction Model using Linear Regression
 <ul>
   <li>R-Squared:0.8</li>
   <li>Mean squared error: 14.02</li>
@@ -39,12 +38,22 @@ EquiStocks
 ## Tools
 <ul>  
 <li>Python 3.8</li>  
+<li>SQL</li>  
 <li>Chart.js</li>  
 <li>HTML5</li>  
 <li>CSS</li>  
 </ul>
 
+## Screenshots
 
+<p align="center">
+    <img src="https://i.imgur.com/Eka7E1A.jpeg" alt="EquiStocks" height="">
+  </a>
+</p>
+<p align="center">
+    <img src="https://i.imgur.com/F5ON81r.jpeg" alt="EquiStocks Dashboard" height="">
+  </a>
+</p>
 
 
 ## Setting Up
