@@ -336,7 +336,7 @@ def portfoliomanager():
     if request.method == "POST":  
         try:  
             symbol = companyname
-            date = "03-10-2021"
+            date = "25-12-2021"
             quotes = fa.quote(symbol, '639ad0383d5548a11c1f1864ab499672')
             quotes_values=quotes.values.tolist()
             pricedata=quotes_values[2]

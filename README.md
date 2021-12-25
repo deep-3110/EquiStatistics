@@ -1,27 +1,27 @@
-# EquiStatistics
+# EquiStocks
 
 <br />
 <br />
 
 
 <p align="center">
-    <img src="https://i.imgur.com/Qu94jxk.jpeg" alt="EquiStatistics" height="">
+    <img src="https://i.imgur.com/Qu94jxk.jpeg" alt="EquiStocks" height="">
   </a>
 </p>
 <p align="center">
-    <img src="https://i.imgur.com/F5ON81r.jpeg" alt="EquiStatistics Dashboard" height="">
+    <img src="https://i.imgur.com/F5ON81r.jpeg" alt="EquiStocks Dashboard" height="">
   </a>
 </p>
 
 <!-- DOCUMENTATION -->
 ## Introduction
-Equistatistics
+EquiStocks
 <br/>
 **Project Date**: 21-10-2020
 <br/>
 **Subject**: Programming Laboratory BTI CS NMIMS Batch 2023
 <br/>
-[Heroku Link](https://equistatistics.herokuapp.com/)
+[Heroku Link](https://EquiStocks.herokuapp.com/)
 <br/>
 [Demo](https://youtu.be/hEB0Y_G1KCM)
 
