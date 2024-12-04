@@ -1,5 +1,5 @@
 # EquiStocks
-
+EquiStocks is a comprehensive stock market analytics platform designed for portfolio management, stock price prediction, and sentiment analysis. The project was developed as part of the Programming Laboratory course for the BTI CS NMIMS Batch of 2023, dated October 21, 2020.
 <!-- DOCUMENTATION -->
 ## Introduction
 EquiStocks
